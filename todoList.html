@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>To do list</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="webStyle.css">
+<script src="js/script.js"></script>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Menu</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <ul>
+      <li><a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a></li>
+      <li><a href="algebraLaws.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Introduction</a></li>
+      <li><a href="linearEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Linear Equation</a></li>
+      <li><a href="quadEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Quadratic Equation</a></li>
+    </ul>
+    <a href="todoList.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">To do List</a>
+    <a href="feedback.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Feedback Form</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-margin-right" onclick="w3_open()">☰</a>
+  <span>To do list</span>
+</header>
+
+<div class="w3-main container">
+  <h1 class="w3-jumbo">To-do List</h1>
+  <div id="myDIV" class="header w3-section">
+    <input class="w3-input w3-half" type="text" id="myInput" placeholder="Title...">
+    <button onclick="newElement()" class="addBtn w3-button">Add</button>
+    <button class="w3-button w3-black" onclick="clearList()">Clear all</button>
+  </div>
+  <ul class="w3-ul w3-border" id="myUL">
+  </ul>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" title="close side menu" id="myOverlay"></div>
+<script src="js/toDoList.js"></script>
+</body>
+</html>

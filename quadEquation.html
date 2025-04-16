@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="webStyle.css">
+    <title>Quadratic Equations</title>
+    <script src="js/script.js"></script>
+    <script src='js/calculator.js'></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" id="mySidebar"><br>
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+      <div class="w3-container">
+        <h3 class="w3-padding-64"><b>Menu</b></h3>
+      </div>
+      <div class="w3-bar-block">
+        <ul>
+          <li><a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a></li>
+          <li><a href="algebraLaws.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Introduction</a></li>
+          <li><a href="linearEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Linear Equation</a></li>
+          <li><a href="quadEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Quadratic Equation</a></li>
+        </ul>
+        <a href="todoList.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">To do List</a>
+        <a href="feedback.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Feedback Form</a>
+      </div>
+    </nav>
+
+    <!-- Top menu on small screens -->
+    <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+      <a href="javascript:void(0)" class="w3-button w3-margin-right" onclick="w3_open()">☰</a>
+      <span>Quadratic Equation</span>
+    </header>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main">
+      <button id='calcButton'class="w3-button w3-black w3-display-bottomright" style="z-index: 4;position: fixed;" onclick="open_calc()">Calculator</button>
+  
+      <div class="w3-container w3-display-bottomright" id="calculatorContainer">
+        <button onclick="close_calc()" class="w3-button w3-black">&times;</button>
+        <form name="sci-calc">
+          <table class="calculator w3-table w3-centered" id="calculatorTable">
+          <tr>
+          <td colspan="5"><input class="w3-input" name="display" value="0" size="28" maxlength="25"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="C" onclick="this.form.display.value= 0 "></td>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="<--" onclick="deleteChar(this.form.display)"></td>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="&#960;" onclick="addChar(this.form.display,'3.14159265359')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="%" onclick=" percent(this.form.display)"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="e&#94;" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="*" onclick="addChar(this.form.display, '*')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="&radic;" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="&#177" onclick="changeSign(this.form.display)"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="x&#50;" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="(" onclick="addChar(this.form.display, '(')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value=")" onclick="addChar(this.form.display,')')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="cos" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="sin" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="tan" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+          </tr>
+          </table>
+          </form>
+      </div>
+
+    <!-- Header -->
+    <div class="w3-container" id="showcase">
+      <h1 class="w3-jumbo"><b>Quadratic Equation</b></h1>
+      <hr class="w3-round">
+      <p>Quadratic equations are expressed in this form:</p>
+      <p>\[ax^2 + bx + c\]</p>
+      <p>Where a, b and c are constants.</p>
+      <p>Example:</p>
+      <p>\(2x^2 + x - 1 = 0\)</p>
+      <p>As shown above, a quadratic equation is when a equation contains \(x\) to a degree of 2.</p>
+      <p>Degree of 2 mean the power of \(x\) is a 2.</p>
+      <p>When we have \(x + 1 = 2\) where \(x\) is only a power of 1, it is called a linear equation.</p>
+      <p>How do we get a quadratic expression?</p>
+      <p>We multiply 2 linear expressions together.</p>
+      <p>\(x(x + 1) = 2x^2 + x\)</p>
+      <p>or \((2x - 1)(2x + 1) = 4x^2 - 1 \) etc</p>
+      <h2>Solving quadratic equations</h2>
+      <p>\[2x^2 + x = 1\]</p>
+      <p>We cannot factor out the x and divide it.</p>
+      <p>\(x(2x + 1) = 1\)</p>
+      <p>\(2x + 1 = \frac{1}{x}\)</p>
+      <p>Instead, we should factorise it by grouping. This is because some quadratic equations can be factorised out into 2 linear expressions.</p>
+      <p>\(2x^2 + x - 1 = 0\)</p>
+      <p><img src="factorise.PNG" alt="picture showing factorisation"></p>
+      <p>As show above, first, we should reduce \(x\) into 2 parts.</p>
+      <p>Then, for the constant, we make sure it is \(-1\) by multiplying -1 and 1</p>
+      <p>Lastly, we do cross multiplication from \(x\) to \(-1\) and \(2x\) to \(1\)</p>
+      <p>we get:</p>
+      <p>\((2x-1)(x+1) = 0\)</p>
+      <p>We solve each linear equation individually:</p>
+      <p>\(2x - 1 = 0 \)</p>
+      <p>\(x = \frac{1}{2}\)</p>
+      <p>\(x + 1 = 0\)</p>
+      <p>\(x = -1\)</p>
+      <p>Therefore, there is 2 solutions to this quadratic equation. \(x = \frac{1}{2}\) and \(x = -1\)</p>
+      <p>Not all quadratic equations can be solved using real numbers.</p>
+      <p>Some quadratic equations such as:</p>
+      <p>\(x^2 + 1 = 0\)</p>
+      <p>cannot be solved using real numbers as they do not have real number solutions. Instead, it requires complex numbers in order to solve it. This is because if we try to solve it:</p>
+      <p>\(x^2 = -1\)</p>
+      <p>we get this equation:</p>
+      <p>\(x = \pm\sqrt{-1}\)</p>
+      <p>There is no real number representation of \(\sqrt{-1}\). \(\sqrt{-1}\) is defined as \(i\). However, we will not be learning complex numbers for now.</p>
+      <hr>
+      <p>Questions</p>
+      <p>\(4x(2x + 3) = 36\)</p>
+      <p>\(2x^2 - 9x= 0\)</p>
+      <p>\(x^2 - 1 = 0\)</p>
+
+      <p>Answers</p>
+      <p>\(x=\frac{3}{2}\) or \(x=−3\)</p>
+      <p>\(x = 0\) or \(x = \frac{9}{2}\)</p>
+      <p>\(x = 1\) or \(x = -1\)</p>
+    </div>
+  </body>
+</html>

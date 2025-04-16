@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="webStyle.css">
+    <title>Introduction</title>
+    <script src="js/script.js"></script>
+    <script src='js/calculator.js'></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="js/questionGenerator.js"></script>
+    <script src="js/questionGenerator2.js"></script>
+  </head>
+  <body>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" id="mySidebar"><br>
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+      <div class="w3-container">
+        <h3 class="w3-padding-64"><b>Menu</b></h3>
+      </div>
+      <div class="w3-bar-block">
+        <ul>
+          <li><a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a></li>
+          <li><a href="algebraLaws.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Introduction</a></li>
+          <li><a href="linearEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Linear Equation</a></li>
+          <li><a href="quadEquation.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Quadratic Equation</a></li>
+        </ul>
+        <a href="todoList.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">To do List</a>
+        <a href="feedback.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Feedback Form</a>
+      </div>
+    </nav>
+
+    <!-- Top menu on small screens -->
+    <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+      <a href="javascript:void(0)" class="w3-button w3-margin-right" onclick="w3_open()">☰</a>
+      <span>Introduction</span>
+    </header>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main">
+      <button id='calcButton'class="w3-button w3-black w3-display-bottomright" style="z-index: 4;position: fixed;" onclick="open_calc()">Calculator</button>
+  
+      <div class="w3-container w3-display-bottomright" id="calculatorContainer">
+        <button onclick="close_calc()" class="w3-button w3-black">&times;</button>
+        <form name="sci-calc">
+          <table class="calculator w3-table w3-centered" id="calculatorTable">
+          <tr>
+          <td colspan="5"><input class="w3-input" name="display" value="0" size="28" maxlength="25"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="C" onclick="this.form.display.value= 0 "></td>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="<--" onclick="deleteChar(this.form.display)"></td>
+          <td><input type="button" class="btnTop w3-button" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="&#960;" onclick="addChar(this.form.display,'3.14159265359')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="%" onclick=" percent(this.form.display)"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="e&#94;" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="*" onclick="addChar(this.form.display, '*')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="&radic;" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="&#177" onclick="changeSign(this.form.display)"></td>
+          <td><input type="button" class="btnNum w3-button" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
+          <td><input type="button" class="btnOpps w3-button" name="btnOpps" value="x&#50;" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
+          </tr>
+          <tr>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="(" onclick="addChar(this.form.display, '(')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value=")" onclick="addChar(this.form.display,')')"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="cos" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="sin" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+          <td><input type="button" class="btnMath w3-button" name="btnMath" value="tan" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+          </tr>
+          </table>
+          </form>
+      </div>
+
+    <!-- Header -->
+    <div class="w3-container" id="showcase">
+      <h1 class="w3-jumbo"><b>Introduction</b></h1>
+      <hr class="w3-round">
+      <h2>Introduction to Variables</h2>
+      <p>What is a Variable?</p>
+      <p>\begin{equation} x = 2 \end{equation}</p>
+      <p>A variable is similar to a storage that stores information. We can define other alphabets such as a, b, c and etc.</p>
+      <hr>
+      <h3>Adding and substraction of variables</h3>
+      <p>\begin{equation} 2x + x \end{equation}</p>
+      <p>If we were to add these two variable together, it will equate to \(3x\)</p>
+      <p>How does it work?</p>
+      <p>First, we will factorise out x.</p>
+      <p>\(x(2 + 1)\) [Note that x = 1x, we do not write out the 1 as it is implied.]</p>
+      <p>Then, we add the numbers together.</p>
+      <p>\(x(3)\)</p>
+      <p>[You can always skip these steps, this is just an example / way to think of adding and subtracting algebra]</p>
+      <p>Lastly, we remove the brackets and write out the numbers first, followed by the alphabet.</p>
+      <p>\(3x\)</p>
+
+      <p>Similarity, subtraction works the same way, but instead of adding, we subtract the numbers.</p>
+      <p>\(3x - x = 2x\)</p>
+      <h4>Question: Can we add \(3x^2 + x\) ?</h4>
+      <p>Answer</p>
+      <p>No. If we were to factorise out x, we get \( x(3x + 1) \)</p>
+      <p>As \(3x\) and \(1\) are unlike terms, we are unable to add them together.</p>
+      <hr>
+      <p><b>Questions</b></p>
+      <p id="displayQn">[Click generate to generate a question here]</p>
+      <input class="w3-input w3-half" type="text" id="question">
+      <button class="w3-button w3-black" onclick="answerChecker1()">submit</button>
+      <button class="w3-button w3-black" onclick="questionGenerator1()">generate</button>
+      <hr>
+      <h2>Multiplication and Division of variables</h2>
+      <p>\(2 \times x = 2x\)</p>
+      <p>\(2x \times 3x = 6x\)</p>
+      <p>Similarly, \(3x \times 2 = 6x\) as well.</p>
+      <p>\(2x \times 2x = 4x^2\)</p>
+      <p>we separate each components and multiply them.</p>
+      <p>Division</p>
+      <p>\(3x \div 3 = x\)</p>
+      <p>Similar to multiplication, we separate each component and divide them.</p>
+      <p>\(3x \div 3x = 1\)</p>
+      <hr>
+      <p>Questions</p>
+      <p id="displayQn2">[Click generate to generate a question here]</p>
+      <p>Round off to 2 decimal place for division</p>
+      <p>Use ^2 for squares</p>
+      <input class="w3-input w3-half" type="text" id="question2">
+      <button class="w3-button w3-black" onclick="answerChecker2()">submit</button>
+      <button class="w3-button w3-black" onclick="questionGenerator2()">generate</button>
+
+    </div>
+  </body>
+</html>

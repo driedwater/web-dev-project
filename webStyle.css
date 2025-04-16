@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://www.w3schools.com/w3css/4/w3.css');
+
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+}
+
+body {
+  font-size:16px;
+  background-color: #313638;
+  color: white;
+}
+
+#myOverlay {
+  cursor:pointer
+}
+
+#mySidebar {
+  background-color: #5a618d;
+  z-index:3;
+  width:300px;
+  font-weight:bold;
+}
+
+#contact {
+  margin-top:75px;
+}
+
+.w3-half img {
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+}
+
+.w3-container {
+  margin-top:80px;
+}
+
+.w3-main {
+  margin-left:340px;
+  margin-right:40px;
+}
+
+.w3-round {
+  width:50px;
+  border:5px solid rgb(255, 255, 255);
+}
+
+.w3-half img:hover {
+  opacity:1
+}
+
+#calculatorContainer {
+  z-index: 5;
+  position: fixed;
+  display: none;
+
+}
+
+td {
+  border-collapse: collapse;
+}
+
+.calculator {
+  background-color: rgb(41, 41, 41)
+}
+
+
+.btnTop{
+  border-radius: 20%;  
+  color: white;
+  background-color: #919191;
+  font-size: 14px;
+  margin: auto;
+}
+.btnNum {
+  border-radius: 20%;  
+  color: white;
+  background-color: black;
+  font-size: 14px;
+  margin: auto;
+}
+.btnMath {
+  border-radius: 20%;  
+  color: white;
+  background-color: #f7837f;
+  font-size: 14px;
+  margin: auto;
+}
+.btnOpps {
+  border-radius: 20%;  
+  color: white;
+  background-color: #fcac5c;
+  font-size: 14px;
+  margin: auto;
+}
+
+#sendMessage {
+  background-color: #5a618d;
+}
+
+hr {
+  color: white;
+}
+
+.addBtn {
+  background-color: #5a618d;
+}
